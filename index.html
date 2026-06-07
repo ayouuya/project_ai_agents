@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Multi-Agent System for E-commerce with LangGraph</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient background with animated glowing circles -->
+    <div class="ambient-background">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Top progress bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Main slides container -->
+    <div class="presentation-container">
+        <main class="slides-wrapper" id="slidesWrapper">
+
+            <!-- SLIDE 1: COVER PAGE -->
+            <section class="slide active" id="slide-1">
+                <div class="slide-content cover-slide">
+                    <div class="cover-header">
+                        <span class="badge"><i class="fa-solid fa-graduation-cap"></i> Final Year Project Presentation (PFE)</span>
+                        <h1 class="main-title">Intelligent Multi-Agent System<br>for E-commerce with <span class="highlight-text">LangGraph</span></h1>
+                        <p class="subtitle">Orchestration of autonomous specialized agents for e-commerce automation</p>
+                    </div>
+                    
+                    <div class="cover-grid">
+                        <div class="cover-illustration">
+                            <!-- Animated SVG AI + E-commerce -->
+                            <svg class="interactive-svg cover-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                                <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8" />
+                                    </linearGradient>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.8" />
+                                    </linearGradient>
+                                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feGaussianBlur stdDeviation="8" result="blur" />
+                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                    </filter>
+                                </defs>
+                                <!-- Connections nodes background -->
+                                <g opacity="0.3">
+                                    <line x1="200" y1="200" x2="80" y2="100" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                    <line x1="200" y1="200" x2="320" y2="100" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                    <line x1="200" y1="200" x2="320" y2="300" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                    <line x1="200" y1="200" x2="80" y2="300" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                    <line x1="200" y1="200" x2="200" y2="60" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                </g>
+                                <!-- Central AI Hub -->
+                                <circle cx="200" cy="200" r="45" fill="url(#grad1)" filter="url(#glow)" class="pulse-node" />
+                                <text x="200" y="205" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="bold">SUPERVISOR</text>
+                                <!-- Orbiting nodes (representing agents) -->
+                                <g class="orbit-anim-1">
+                                    <circle cx="80" cy="100" r="25" fill="url(#grad2)" />
+                                    <i class="fa-solid fa-magnifying-glass font-icon-svg" x="72" y="92"></i>
+                                    <text x="80" y="140" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="10">Search</text>
+                                </g>
+                                <g class="orbit-anim-2">
+                                    <circle cx="320" cy="100" r="25" fill="url(#grad2)" />
+                                    <text x="320" y="140" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="10">Recommendations</text>
+                                </g>
+                                <g class="orbit-anim-3">
+                                    <circle cx="320" cy="300" r="25" fill="url(#grad2)" />
+                                    <text x="320" y="340" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="10">Inventory</text>
+                                </g>
+                                <g class="orbit-anim-4">
+                                    <circle cx="80" cy="300" r="25" fill="url(#grad2)" />
+                                    <text x="80" y="340" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="10">Support</text>
+                                </g>
+                                <g class="orbit-anim-5">
+                                    <circle cx="200" cy="60" r="20" fill="#f43f5e" />
+                                    <text x="200" y="95" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="10">Reviews</text>
+                                </g>
+                                <!-- Central E-commerce element overlay -->
+                                <g class="shopping-cart-overlay">
+                                    <circle cx="200" cy="200" r="25" fill="#1e1b4b" opacity="0.6" />
+                                    <path d="M190 190h6l4 12h14l3-9h-18" stroke="#ffffff" stroke-width="2" fill="none"/>
+                                </g>
+                            </svg>
+                        </div>
+                        
+                        <div class="cover-metadata glass-panel">
+                            <div class="meta-row">
+                                <span class="meta-label">Presented by:</span>
+                                <span class="meta-value">PFE Student / University</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Under the direction of:</span>
+                                <span class="meta-value">Academic Advisor</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">University:</span>
+                                <span class="meta-value">Faculty of Science & Technology</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Academic Year:</span>
+                                <span class="meta-value">2025 - 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: INTRODUCTION -->
+            <section class="slide" id="slide-2">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-circle-info"></i> General Introduction</h2>
+                    <div class="grid-2-cols">
+                        <div class="flex-column">
+                            <div class="card glass-panel fade-in-up" style="animation-delay: 0.2s;">
+                                <h3><i class="fa-solid fa-chart-line text-blue"></i> E-commerce Growth</h3>
+                                <p>Electronic commerce has experienced exponential acceleration in recent years, becoming an essential purchasing channel on a global scale with millions of daily transactions.</p>
+                            </div>
+                            <div class="card glass-panel fade-in-up" style="animation-delay: 0.4s;">
+                                <h3><i class="fa-solid fa-triangle-exclamation text-yellow"></i> Major Platform Challenges</h3>
+                                <p>Platforms must manage vast product catalogs in real-time, provide 24/7 customer service, personalize the browsing experience, and dynamically optimize supply chains.</p>
+                            </div>
+                        </div>
+                        <div class="flex-column">
+                            <div class="card glass-panel fade-in-up" style="animation-delay: 0.6s;">
+                                <h3><i class="fa-solid fa-brain text-purple"></i> Value of Generative AI</h3>
+                                <p>Modern AI goes beyond static queries. It enables understanding natural language, reasoning about complex purchasing contexts, and analyzing sentiments at scale.</p>
+                            </div>
+                            <div class="card glass-panel fade-in-up" style="animation-delay: 0.8s;">
+                                <h3><i class="fa-solid fa-users text-green"></i> Value of Multi-Agent Systems (MAS)</h3>
+                                <p>Rather than a single rigid AI model, MAS offer a division of labor among highly specialized agents, collaborating dynamically and autonomously to solve complex scenarios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: PROBLEM STATEMENT -->
+            <section class="slide" id="slide-3">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-circle-question"></i> Problem Statement</h2>
+                    <div class="problem-container">
+                        <div class="problem-intro glass-panel fade-in-up">
+                            <p><strong>Finding:</strong> Traditional e-commerce architectures lack adaptability and intelligent cohesion in the face of complex user demands.</p>
+                        </div>
+                        <div class="problem-grid">
+                            <div class="problem-card glass-panel border-red-glow fade-in-up" style="animation-delay: 0.2s;">
+                                <div class="icon-wrapper bg-red"><i class="fa-solid fa-cubes-stacked"></i></div>
+                                <h4>Data Overload</h4>
+                                <p>Difficulty for customers to navigate among thousands of products without an intelligent contextual search engine.</p>
+                            </div>
+                            <div class="problem-card glass-panel border-red-glow fade-in-up" style="animation-delay: 0.4s;">
+                                <div class="icon-wrapper bg-red"><i class="fa-solid fa-heart-crack"></i></div>
+                                <h4>Cold Recommendations</h4>
+                                <p>Algorithms based solely on click history lack semantic refinement and immediate contextualization.</p>
+                            </div>
+                            <div class="problem-card glass-panel border-red-glow fade-in-up" style="animation-delay: 0.6s;">
+                                <div class="icon-wrapper bg-red"><i class="fa-solid fa-warehouse"></i></div>
+                                <h4>Inventory Desynchronization</h4>
+                                <p>Difficulty in dynamically linking product search and recommendations with the real and local state of inventory.</p>
+                            </div>
+                            <div class="problem-card glass-panel border-red-glow fade-in-up" style="animation-delay: 0.8s;">
+                                <div class="icon-wrapper bg-red"><i class="fa-solid fa-comments"></i></div>
+                                <h4>Rigid Customer Support</h4>
+                                <p>Traditional rule-based chatbots fail to resolve personalized requests or analyze emotions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: PROJECT OBJECTIVES -->
+            <section class="slide" id="slide-4">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-bullseye"></i> Project Objectives</h2>
+                    <div class="grid-2-cols align-center">
+                        <div class="flex-column">
+                            <ul class="fancy-list">
+                                <li class="fade-in-left" style="animation-delay: 0.2s;">
+                                    <div class="list-num">01</div>
+                                    <div class="list-text">
+                                        <h4>Automate E-commerce Tasks</h4>
+                                        <p>Create an autonomous flow capable of chaining search, stock validation, and response formulation without human intervention.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 0.4s;">
+                                    <div class="list-num">02</div>
+                                    <div class="list-text">
+                                        <h4>Improve User Experience (UX)</h4>
+                                        <p>Enable fluid dialogue in natural language where users express complex needs rather than rigid keywords.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 0.6s;">
+                                    <div class="list-num">03</div>
+                                    <div class="list-text">
+                                        <h4>Provide Relevant Recommendations</h4>
+                                        <p>Cross user preferences with real-time review analysis to suggest the most suitable product.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-column">
+                            <ul class="fancy-list">
+                                <li class="fade-in-left" style="animation-delay: 0.8s;">
+                                    <div class="list-num">04</div>
+                                    <div class="list-text">
+                                        <h4>Optimize Inventory Management</h4>
+                                        <p>Verify availability in real-time when recommending to avoid suggesting out-of-stock products.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 1.0s;">
+                                    <div class="list-num">05</div>
+                                    <div class="list-text">
+                                        <h4>Facilitate Decision-Making</h4>
+                                        <p>Generate reports and reasoned summaries of customer reviews to help users make informed choices.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: TECHNOLOGIES USED -->
+            <section class="slide" id="slide-5">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-microchip"></i> Technologies Used</h2>
+                    <div class="tech-grid">
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="tech-icon"><i class="fa-brands fa-python text-blue"></i></div>
+                            <h4>Python</h4>
+                            <p>Algorithmic core and data manipulation of the application.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="tech-icon"><i class="fa-solid fa-link text-green"></i></div>
+                            <h4>LangChain</h4>
+                            <p>LLM integration framework, prompt management, and output parsing.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="tech-icon"><i class="fa-solid fa-diagram-project text-purple"></i></div>
+                            <h4>LangGraph</h4>
+                            <p>Orchestration of agents in cyclic graphs with state management.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="tech-icon"><i class="fa-solid fa-robot text-cyan"></i></div>
+                            <h4>OpenAI / LLM</h4>
+                            <p>Intelligence models (GPT-4o/GPT-3.5) driving agent reasoning.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="tech-icon"><i class="fa-brands fa-html5 text-orange"></i></div>
+                            <h4>HTML5</h4>
+                            <p>Semantic structure and accessibility of the presentation interface.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="tech-icon"><i class="fa-brands fa-css3-alt text-blue"></i></div>
+                            <h4>CSS3 / Styles</h4>
+                            <p>Modern design with glassmorphism and interactive animations.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.7s;">
+                            <div class="tech-icon"><i class="fa-brands fa-js text-yellow"></i></div>
+                            <h4>JavaScript</h4>
+                            <p>Client-side logic, navigation control, and workflow simulation.</p>
+                        </div>
+                        <div class="tech-card glass-panel fade-in-up" style="animation-delay: 0.8s;">
+                            <div class="tech-icon"><i class="fa-solid fa-braces text-gray"></i></div>
+                            <h4>JSON / APIs</h4>
+                            <p>Data exchange format (portfolios, inventory, user profiles).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: MULTI-AGENT ARCHITECTURE -->
+            <section class="slide" id="slide-6">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-network-wired"></i> Multi-Agent Architecture</h2>
+                    <div class="grid-architecture">
+                        <div class="svg-container glass-panel">
+                            <!-- Interactive SVG of architecture -->
+                            <svg viewBox="0 0 500 400" width="100%" height="100%">
+                                <defs>
+                                    <linearGradient id="supervisorGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#3b82f6"/>
+                                        <stop offset="100%" stop-color="#8b5cf6"/>
+                                    </linearGradient>
+                                    <linearGradient id="agentGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                                
+                                <!-- User Node -->
+                                <rect x="200" y="20" width="100" height="40" rx="10" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+                                <text x="250" y="45" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="12" font-weight="bold">USER</text>
+                                
+                                <!-- Arrow User -> Supervisor -->
+                                <path d="M250 60 L250 100" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                                
+                                <!-- Supervisor Node -->
+                                <rect id="arch-supervisor" x="180" y="100" width="140" height="50" rx="12" fill="url(#supervisorGrad)" class="clickable-node" filter="url(#glow)"/>
+                                <text x="250" y="130" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="13" font-weight="bold">SUPERVISOR AGENT</text>
+                                
+                                <!-- Connection Lines to Specialists -->
+                                <path d="M250 150 L80 230" stroke="#8b5cf6" stroke-width="2" fill="none" class="conn-line" id="line-search"/>
+                                <path d="M250 150 L165 230" stroke="#8b5cf6" stroke-width="2" fill="none" class="conn-line" id="line-reco"/>
+                                <path d="M250 150 L250 230" stroke="#8b5cf6" stroke-width="2" fill="none" class="conn-line" id="line-inventory"/>
+                                <path d="M250 150 L335 230" stroke="#8b5cf6" stroke-width="2" fill="none" class="conn-line" id="line-support"/>
+                                <path d="M250 150 L420 230" stroke="#8b5cf6" stroke-width="2" fill="none" class="conn-line" id="line-review"/>
+
+                                <!-- Specialist Nodes -->
+                                <!-- 1. Product Search -->
+                                <circle cx="80" cy="250" r="25" fill="url(#agentGrad)" id="node-search" class="clickable-node"/>
+                                <text x="80" y="295" text-anchor="middle" fill="#e2e8f0" font-family="Inter" font-size="9" font-weight="600">Product Search</text>
+                                
+                                <!-- 2. Recommendation -->
+                                <circle cx="165" cy="250" r="25" fill="url(#agentGrad)" id="node-reco" class="clickable-node"/>
+                                <text x="165" y="295" text-anchor="middle" fill="#e2e8f0" font-family="Inter" font-size="9" font-weight="600">Recommendation</text>
+                                
+                                <!-- 3. Inventory -->
+                                <circle cx="250" cy="250" r="25" fill="url(#agentGrad)" id="node-inventory" class="clickable-node"/>
+                                <text x="250" y="295" text-anchor="middle" fill="#e2e8f0" font-family="Inter" font-size="9" font-weight="600">Inventory</text>
+                                
+                                <!-- 4. Customer Support -->
+                                <circle cx="335" cy="250" r="25" fill="url(#agentGrad)" id="node-support" class="clickable-node"/>
+                                <text x="335" y="295" text-anchor="middle" fill="#e2e8f0" font-family="Inter" font-size="9" font-weight="600">Support Client</text>
+                                
+                                <!-- 5. Review Analysis -->
+                                <circle cx="420" cy="250" r="25" fill="url(#agentGrad)" id="node-review" class="clickable-node"/>
+                                <text x="420" y="295" text-anchor="middle" fill="#e2e8f0" font-family="Inter" font-size="9" font-weight="600">Review Analysis</text>
+
+                                <!-- Flow lines back to Supervisor -->
+                                <!-- (Shared bidirectional lines) -->
+                                
+                                <!-- Final response path -->
+                                <path d="M250 125 L400 125 L400 350 L250 350" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                                <rect x="180" y="330" width="140" height="40" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+                                <text x="250" y="355" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="11" font-weight="bold">FINAL RESPONSE</text>
+                                
+                                <!-- Markers -->
+                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+                                </marker>
+                            </svg>
+                        </div>
+                        <div class="architecture-explanation glass-panel">
+                            <h3>Centralized Orchestration</h3>
+                            <p>The system is based on a <strong>Hub-and-Spoke</strong> orchestration model resolved by LangGraph:</p>
+                            <ul>
+                                <li><strong>Supervisor Agent:</strong> The conductor. It receives the user request, analyzes the shared state (State), and decides which specialist agent should be invoked next via an LLM call with Structured Output.</li>
+                                <li><strong>Specialist Agents:</strong> 5 autonomous experts configured with specific prompts and tools. They perform their task and write results to the shared State.</li>
+                                <li><strong>Conditional Routing:</strong> Once a specialist finishes, control always returns to the Supervisor who decides what's next or finishes the process (`FINISH`).</li>
+                            </ul>
+                            <div class="tip-box"><i class="fa-solid fa-circle-exclamation text-cyan"></i> Click on the nodes to highlight agents.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: SPECIALIST AGENT DESCRIPTIONS -->
+            <section class="slide" id="slide-7">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-id-card-clip"></i> Specialist Agent Descriptions</h2>
+                    <div class="agents-container">
+                        <!-- Agent 1 -->
+                        <div class="agent-card glass-panel fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="agent-header">
+                                <div class="agent-avatar"><i class="fa-solid fa-magnifying-glass"></i></div>
+                                <h4>Product Search Agent</h4>
+                            </div>
+                            <div class="agent-body">
+                                <h5>Main Role</h5>
+                                <p>Semantic product search in the E-commerce catalog based on price, brand, or characteristic criteria.</p>
+                                <h5>Key Capabilities</h5>
+                                <ul>
+                                    <li>Database querying</li>
+                                    <li>Technical datasheet comparison</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Agent 2 -->
+                        <div class="agent-card glass-panel fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="agent-header">
+                                <div class="agent-avatar"><i class="fa-solid fa-thumbs-up"></i></div>
+                                <h4>Recommendation Agent</h4>
+                            </div>
+                            <div class="agent-body">
+                                <h5>Main Role</h5>
+                                <p>Offer personalization by combining user history, declared preferences, and active session context.</p>
+                                <h5>Key Capabilities</h5>
+                                <ul>
+                                    <li>Semantic collaborative filtering</li>
+                                    <li>Targeted cross-selling & up-selling</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Agent 3 -->
+                        <div class="agent-card glass-panel fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="agent-header">
+                                <div class="agent-avatar"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                <h4>Inventory Agent</h4>
+                            </div>
+                            <div class="agent-body">
+                                <h5>Main Role</h5>
+                                <p>Real-time inventory level management and verification of suggested product availability.</p>
+                                <h5>Key Capabilities</h5>
+                                <ul>
+                                    <li>Stock database consultation</li>
+                                    <li>Estimation of delivery timeframes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Agent 4 -->
+                        <div class="agent-card glass-panel fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="agent-header">
+                                <div class="agent-avatar"><i class="fa-solid fa-headset"></i></div>
+                                <h4>Customer Support Agent</h4>
+                            </div>
+                            <div class="agent-body">
+                                <h5>Main Role</h5>
+                                <p>Response to general customer questions (FAQ, return policy, order tracking) with empathy and accuracy.</p>
+                                <h5>Key Capabilities</h5>
+                                <ul>
+                                    <li>Access to FAQ knowledge base</li>
+                                    <li>Resolution of common requests</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Agent 5 -->
+                        <div class="agent-card glass-panel fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="agent-header">
+                                <div class="agent-avatar"><i class="fa-solid fa-comment-medical"></i></div>
+                                <h4>Review Analysis Agent</h4>
+                            </div>
+                            <div class="agent-body">
+                                <h5>Main Role</h5>
+                                <p>Sentiment analysis of reviews and customer comments left on product pages.</p>
+                                <h5>Key Capabilities</h5>
+                                <ul>
+                                    <li>Extraction of strengths / weaknesses</li>
+                                    <li>Synthetic summary of massive reviews</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: INTERACTIVE SYSTEM WORKFLOW -->
+            <section class="slide" id="slide-8">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-rotate"></i> Interactive System Workflow</h2>
+                    <div class="workflow-grid">
+                        <div class="workflow-animation-panel glass-panel">
+                            <div class="animation-stage">
+                                <div class="stage-actor active-actor" id="actor-user">
+                                    <div class="actor-icon"><i class="fa-solid fa-user"></i></div>
+                                    <span>User</span>
+                                </div>
+                                <div class="stage-flow-line" id="flow-user-supervisor">
+                                    <div class="pulse-dot"></div>
+                                </div>
+                                <div class="stage-actor" id="actor-supervisor">
+                                    <div class="actor-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                    <span>Supervisor</span>
+                                </div>
+                                <div class="stage-flow-line" id="flow-supervisor-agent">
+                                    <div class="pulse-dot"></div>
+                                </div>
+                                <div class="stage-actor" id="actor-agent">
+                                    <div class="actor-icon"><i class="fa-solid fa-robot"></i></div>
+                                    <span id="active-agent-label">Specialist Agent</span>
+                                </div>
+                            </div>
+                            <div class="animation-controls">
+                                <button class="btn btn-primary" id="btnStartWorkflow"><i class="fa-solid fa-play"></i> Launch simulation</button>
+                                <button class="btn btn-secondary" id="btnNextStep" disabled><i class="fa-solid fa-forward"></i> Next step</button>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-steps-list">
+                            <div class="workflow-step active-step" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-detail">
+                                    <h4>User Request</h4>
+                                    <p>User submits a natural language request to the system.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-detail">
+                                    <h4>Supervisor Analysis</h4>
+                                    <p>Supervisor evaluates the request and determines agent priority order.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-detail">
+                                    <h4>Agent Selection</h4>
+                                    <p>The most qualified agent is selected to execute the first task.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-detail">
+                                    <h4>Execution & Update</h4>
+                                    <p>The specialist executes and updates the global state (State) of the graph.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step" data-step="5">
+                                <div class="step-number">5</div>
+                                <div class="step-detail">
+                                    <h4>Loop or Close</h4>
+                                    <p>Control returns to Supervisor. If needed, another agent is called, else finish.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: LANGGRAPH FUNCTIONING -->
+            <section class="slide" id="slide-9">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-gears"></i> LangGraph Functioning</h2>
+                    <div class="grid-2-cols">
+                        <div class="flex-column">
+                            <div class="card glass-panel fade-in-up">
+                                <h3><i class="fa-solid fa-shapes text-blue"></i> Fundamental Concepts</h3>
+                                <ul class="bullet-list">
+                                    <li><strong>Agent Graphs (StateGraph):</strong> Representation of workflow as nodes (actions/agents) and edges for directing flow.</li>
+                                    <li><strong>Shared State:</strong> Centralized read/write object containing message history, tool results, and process global variables.</li>
+                                    <li><strong>Asynchronous Communication:</strong> Agents communicate implicitly via shared state modifications.</li>
+                                    <li><strong>Cyclic Orchestration:</strong> Unlike linear chains, LangGraph handles loops, back-and-forth, and real-time error corrections.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex-column align-center">
+                            <!-- LangGraph Conceptual Diagram in SVG -->
+                            <div class="svg-container glass-panel width-100">
+                                <svg viewBox="0 0 300 250" width="100%" height="100%">
+                                    <!-- State Central Box -->
+                                    <rect x="90" y="90" width="120" height="50" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" class="pulse-border"/>
+                                    <text x="150" y="115" text-anchor="middle" fill="#3b82f6" font-family="Outfit" font-size="11" font-weight="bold">SHARED STATE</text>
+                                    <text x="150" y="130" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="8">Context / Results</text>
+
+                                    <!-- Node A (Supervisor) -->
+                                    <circle cx="50" cy="50" r="22" fill="#8b5cf6" />
+                                    <text x="50" y="53" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="9" font-weight="bold">Node A</text>
+                                    <text x="50" y="80" text-anchor="middle" fill="#cbd5e1" font-family="Inter" font-size="8">Supervisor</text>
+
+                                    <!-- Node B (Specialist) -->
+                                    <circle cx="250" cy="50" r="22" fill="#10b981" />
+                                    <text x="250" y="53" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="9" font-weight="bold">Node B</text>
+                                    <text x="250" y="80" text-anchor="middle" fill="#cbd5e1" font-family="Inter" font-size="8">Agent</text>
+
+                                    <!-- Conditional Edge (End / Finish) -->
+                                    <circle cx="150" cy="200" r="18" fill="#ef4444" />
+                                    <text x="150" y="203" text-anchor="middle" fill="#ffffff" font-family="Outfit" font-size="9" font-weight="bold">END</text>
+
+                                    <!-- Connections & Flows -->
+                                    <!-- A writes/reads state -->
+                                    <path d="M72 65 L95 90" stroke="#a78bfa" stroke-width="1.5" fill="none" marker-end="url(#arrow-purple)"/>
+                                    <!-- State to B -->
+                                    <path d="M195 90 L228 65" stroke="#a78bfa" stroke-width="1.5" fill="none" marker-end="url(#arrow-purple)"/>
+                                    <!-- B writes back to State -->
+                                    <path d="M235 68 L200 100" stroke="#10b981" stroke-width="1.5" fill="none" marker-end="url(#arrow-green)"/>
+                                    <!-- A to Conditional End -->
+                                    <path d="M70 65 L135 185" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" fill="none" marker-end="url(#arrow-red)"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: EXECUTION EXAMPLE -->
+            <section class="slide" id="slide-10">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-terminal"></i> Execution Example Step-by-Step</h2>
+                    <div class="execution-example glass-panel">
+                        <div class="scenario-header">
+                            <span class="user-avatar"><i class="fa-solid fa-user"></i></span>
+                            <div class="query-bubble">
+                                <span class="bubble-tag">User:</span>
+                                <p>"I'm looking for a smartphone with good battery life."</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-vertical" id="executionTimeline">
+                            <!-- Step 1 -->
+                            <div class="timeline-item active-item" id="exec-step-1">
+                                <div class="item-icon bg-purple"><i class="fa-solid fa-user-tie"></i></div>
+                                <div class="item-content">
+                                    <span class="step-tag">1. Supervisor Agent</span>
+                                    <p>Analyzes the request. Identifies the need to search for smartphones. Decides to call <code>Product Search Agent</code>.</p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="timeline-item" id="exec-step-2">
+                                <div class="item-icon bg-blue"><i class="fa-solid fa-magnifying-glass"></i></div>
+                                <div class="item-content">
+                                    <span class="step-tag">2. Product Search Agent</span>
+                                    <p>Searches for battery-oriented smartphones. Identifies 3 models: <strong>Model X, Model Y, Model Z</strong>.</p>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="timeline-item" id="exec-step-3">
+                                <div class="item-icon bg-red"><i class="fa-solid fa-comments"></i></div>
+                                <div class="item-content">
+                                    <span class="step-tag">3. Review Analysis Agent</span>
+                                    <p>Analyzes reviews of the 3 models. Highlights that <strong>Model Y</strong> has the best battery rating (4.8/5).</p>
+                                </div>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="timeline-item" id="exec-step-4">
+                                <div class="item-icon bg-orange"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                <div class="item-content">
+                                    <span class="step-tag">4. Inventory Agent</span>
+                                    <p>Verifies <strong>Model Y</strong> availability in warehouse. Stock OK (12 units available).</p>
+                                </div>
+                            </div>
+                            <!-- Step 5 -->
+                            <div class="timeline-item" id="exec-step-5">
+                                <div class="item-icon bg-green"><i class="fa-solid fa-flag-checkered"></i></div>
+                                <div class="item-content">
+                                    <span class="step-tag">5. Final Recommendation</span>
+                                    <p>Supervisor formulates response: "Model Y is recommended thanks to its 5000mAh battery praised by 92% of users. It's in stock."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-controls">
+                            <button class="btn btn-primary btn-sm" id="btnNextExecStep">Advance scenario <i class="fa-solid fa-chevron-right"></i></button>
+                            <button class="btn btn-secondary btn-sm" id="btnResetExecStep">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: ADVANTAGES OF MULTI-AGENT ARCHITECTURE -->
+            <section class="slide" id="slide-11">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-circle-check"></i> Advantages of Multi-Agent Architecture</h2>
+                    <div class="grid-3-cols">
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-cubes"></i></div>
+                            <h4>Modularity</h4>
+                            <p>Each agent is developed and tested separately. You can modify or replace the Product Search Agent without touching other modules.</p>
+                        </div>
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+                            <h4>Scalability</h4>
+                            <p>Ability to add new specialists (ex: Payment Agent, Shipping Agent) by simply connecting them to the graph and adjusting the supervisor prompt.</p>
+                        </div>
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-wrench"></i></div>
+                            <h4>Simplified Maintenance</h4>
+                            <p>Reduction of prompt size for each agent (separation of concerns) limits the butterfly effect of regression when updating.</p>
+                        </div>
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-star"></i></div>
+                            <h4>Agent Specialization</h4>
+                            <p>Use of specialized prompts and fine-tuned models for each task dramatically increases accuracy compared to a single generalist agent.</p>
+                        </div>
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-bolt"></i></div>
+                            <h4>Task Parallelization</h4>
+                            <p>LangGraph allows executing branches in parallel (ex: analyzing reviews and checking stocks simultaneously) before aggregating results.</p>
+                        </div>
+                        <div class="card glass-panel border-green-glow fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="advantage-icon text-green"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h4>Robust Control</h4>
+                            <p>Ability to implement security filters and deterministic guard logic at the output of each node in the graph.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12: CHALLENGES ENCOUNTERED -->
+            <section class="slide" id="slide-12">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-circle-exclamation"></i> Challenges Encountered</h2>
+                    <div class="grid-2-cols">
+                        <div class="flex-column">
+                            <div class="card glass-panel border-red-glow fade-in-left" style="animation-delay: 0.1s;">
+                                <h3><i class="fa-solid fa-comments-dashed text-red"></i> Communication Between Agents</h3>
+                                <p>Defining the ideal state schema (State Schema) to transfer complex information between specialists without saturating LLM context.</p>
+                            </div>
+                            <div class="card glass-panel border-red-glow fade-in-left" style="animation-delay: 0.3s;">
+                                <h3><i class="fa-solid fa-box-open text-red"></i> Context Management</h3>
+                                <p>Preventing full message history from exploding in size during repeated back-and-forth, increasing latency and API costs.</p>
+                            </div>
+                        </div>
+                        <div class="flex-column">
+                            <div class="card glass-panel border-red-glow fade-in-left" style="animation-delay: 0.2s;">
+                                <h3><i class="fa-solid fa-arrows-spin text-red"></i> Coherence & Hallucinations</h3>
+                                <p>Ensuring Supervisor doesn't loop indefinitely if an agent repeatedly fails to validate data (implementation of deterministic "guards").</p>
+                            </div>
+                            <div class="card glass-panel border-red-glow fade-in-left" style="animation-delay: 0.4s;">
+                                <h3><i class="fa-solid fa-gauge-high text-red"></i> System Performance</h3>
+                                <p>Cumulative waiting time (latency of successive LLM calls) requires optimizations (token streaming, parallelism).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: IMPROVEMENT AREAS -->
+            <section class="slide" id="slide-13">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-arrows-up-to-line"></i> Improvement Areas</h2>
+                    <div class="grid-2-cols">
+                        <div class="flex-column">
+                            <ul class="fancy-list">
+                                <li class="fade-in-left" style="animation-delay: 0.1s;">
+                                    <div class="list-num bg-purple">A</div>
+                                    <div class="list-text">
+                                        <h4>Advanced Recommendations (RAG)</h4>
+                                        <p>Integrate a vector database (ex: Pinecone, ChromaDB) for ultra-fast contextual semantic searches.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 0.2s;">
+                                    <div class="list-num bg-purple">B</div>
+                                    <div class="list-text">
+                                        <h4>Real-Time Flow Integration</h4>
+                                        <p>Connect directly to real logistics APIs (ex: DHL, Shopify) for exact dynamic delivery times and inventory.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 0.3s;">
+                                    <div class="list-num bg-purple">C</div>
+                                    <div class="list-text">
+                                        <h4>Predictive Machine Learning</h4>
+                                        <p>Add a demand forecasting model so the inventory agent can proactively alert on stock shortage risks.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-column">
+                            <ul class="fancy-list">
+                                <li class="fade-in-left" style="animation-delay: 0.4s;">
+                                    <div class="list-num bg-purple">D</div>
+                                    <div class="list-text">
+                                        <h4>Analytics Dashboard</h4>
+                                        <p>Design an admin interface to visualize LangGraph in real-time, with token costs and decision pathways.</p>
+                                    </div>
+                                </li>
+                                <li class="fade-in-left" style="animation-delay: 0.5s;">
+                                    <div class="list-num bg-purple">E</div>
+                                    <div class="list-text">
+                                        <h4>New Expert Agents</h4>
+                                        <p>Create a <em>Marketing Agent</em> for targeted promotions and a <em>Fraud Detection Agent</em> to validate suspicious purchase intents.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: RESULTS & KEY BENEFITS -->
+            <section class="slide" id="slide-14">
+                <div class="slide-content">
+                    <h2 class="slide-title"><i class="fa-solid fa-square-poll-vertical"></i> Results & Key Benefits</h2>
+                    <div class="grid-2-cols">
+                        <div class="flex-column justify-center">
+                            <div class="metric-card glass-panel fade-in-up" style="animation-delay: 0.1s;">
+                                <div class="metric-value text-blue">-75%</div>
+                                <div class="metric-label">Customer support processing time</div>
+                            </div>
+                            <div class="metric-card glass-panel fade-in-up" style="animation-delay: 0.3s;">
+                                <div class="metric-value text-green">+35%</div>
+                                <div class="metric-label">Accuracy of cross recommendations</div>
+                            </div>
+                            <div class="metric-card glass-panel fade-in-up" style="animation-delay: 0.5s;">
+                                <div class="metric-value text-cyan">94%</div>
+                                <div class="metric-label">Simulated user satisfaction rate</div>
+                            </div>
+                        </div>
+                        <div class="flex-column align-center justify-center">
+                            <div class="chart-container glass-panel width-100">
+                                <h3>Operational Efficiency Gain (Simulated)</h3>
+                                <!-- Custom SVG Chart -->
+                                <svg viewBox="0 0 300 200" width="100%">
+                                    <!-- Axes -->
+                                    <line x1="40" y1="20" x2="40" y2="170" stroke="#475569" stroke-width="2"/>
+                                    <line x1="40" y1="170" x2="280" y2="170" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <!-- Grid lines -->
+                                    <line x1="40" y1="70" x2="280" y2="70" stroke="#334155" stroke-dasharray="4,4"/>
+                                    <line x1="40" y1="120" x2="280" y2="120" stroke="#334155" stroke-dasharray="4,4"/>
+                                    
+                                    <!-- Labels -->
+                                    <text x="30" y="174" text-anchor="end" fill="#94a3b8" font-size="8">0%</text>
+                                    <text x="30" y="124" text-anchor="end" fill="#94a3b8" font-size="8">50%</text>
+                                    <text x="30" y="74" text-anchor="end" fill="#94a3b8" font-size="8">100%</text>
+                                    
+                                    <!-- Bars (Static / Agent) -->
+                                    <!-- Bar 1: Traditional (50%) -->
+                                    <rect x="80" y="120" width="40" height="50" fill="#ef4444" opacity="0.8" rx="4"/>
+                                    <text x="100" y="110" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold">50%</text>
+                                    <text x="100" y="185" text-anchor="middle" fill="#cbd5e1" font-size="8">Traditional</text>
+
+                                    <!-- Bar 2: Multi-Agents (95%) -->
+                                    <rect x="180" y="75" width="40" height="95" fill="#10b981" opacity="0.8" rx="4" class="chart-grow-anim"/>
+                                    <text x="200" y="65" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">95%</text>
+                                    <text x="200" y="185" text-anchor="middle" fill="#cbd5e1" font-size="8">Multi-Agents</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 15: GENERAL CONCLUSION -->
+            <section class="slide" id="slide-15">
+                <div class="slide-content text-center">
+                    <h2 class="slide-title"><i class="fa-solid fa-flag-checkered"></i> General Conclusion</h2>
+                    
+                    <div class="conclusion-box glass-panel fade-in-up">
+                        <h3>Project Summary</h3>
+                        <p>The development of this Multi-Agent System demonstrates <strong>LangGraph</strong>'s efficiency in structuring complex reasoning required by modern e-commerce. By dividing work among specialized agents (search, reviews, inventory, etc.), we achieve a system that is more robust, modular, and aligned with industry requirements.</p>
+                    </div>
+
+                    <div class="grid-3-cols mt-2">
+                        <div class="card glass-panel fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="conclusion-mini-icon text-blue"><i class="fa-solid fa-code"></i></div>
+                            <h4>LangGraph Contribution</h4>
+                            <p>Clear orchestration through graphs and resilience of shared states.</p>
+                        </div>
+                        <div class="card glass-panel fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="conclusion-mini-icon text-purple"><i class="fa-solid fa-users-gear"></i></div>
+                            <h4>Future of MAS</h4>
+                            <p>Inevitable transition from passive AI to collaborative agent ecosystems.</p>
+                        </div>
+                        <div class="card glass-panel fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="conclusion-mini-icon text-green"><i class="fa-solid fa-rocket"></i></div>
+                            <h4>Perspectives</h4>
+                            <p>Production deployment, multimodal RAG, and voice integration.</p>
+                        </div>
+                    </div>
+
+                    <div class="thank-you-message fade-in-up" style="animation-delay: 0.8s;">
+                        <h2>Thank you for your attention!</h2>
+                        <p>Do you have any questions?</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Navigation control bar -->
+    <footer class="presentation-controls glass-panel">
+        <div class="control-left">
+            <button class="btn btn-icon" id="btnHelp" title="Keyboard shortcuts"><i class="fa-solid fa-keyboard"></i></button>
+            <button class="btn btn-icon" id="btnFullscreen" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+        </div>
+        
+        <div class="control-center">
+            <button class="btn btn-icon" id="btnPrev" title="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+            <span class="slide-indicator" id="slideIndicator">1 / 15</span>
+            <button class="btn btn-icon" id="btnNext" title="Next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="control-right">
+            <button class="btn btn-icon" id="btnAutoplay" title="Autoplay"><i class="fa-solid fa-play"></i></button>
+            <div class="select-wrapper">
+                <select id="slideSelector">
+                    <option value="0">Slide 1: Cover Page</option>
+                    <option value="1">Slide 2: Introduction</option>
+                    <option value="2">Slide 3: Problem Statement</option>
+                    <option value="3">Slide 4: Project Objectives</option>
+                    <option value="4">Slide 5: Technologies Used</option>
+                    <option value="5">Slide 6: Multi-Agent Architecture</option>
+                    <option value="6">Slide 7: Agent Descriptions</option>
+                    <option value="7">Slide 8: System Workflow</option>
+                    <option value="8">Slide 9: LangGraph Functioning</option>
+                    <option value="9">Slide 10: Execution Example</option>
+                    <option value="10">Slide 11: Advantages</option>
+                    <option value="11">Slide 12: Challenges Encountered</option>
+                    <option value="12">Slide 13: Improvement Areas</option>
+                    <option value="13">Slide 14: Results & Benefits</option>
+                    <option value="14">Slide 15: Conclusion</option>
+                </select>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Help Window (Modal) -->
+    <div class="modal-overlay" id="helpModal">
+        <div class="modal-content glass-panel">
+            <h3><i class="fa-solid fa-keyboard"></i> Keyboard Shortcuts</h3>
+            <ul class="help-list">
+                <li><kbd>→</kbd> or <kbd>Space</kbd>: Next Slide</li>
+                <li><kbd>←</kbd>: Previous Slide</li>
+                <li><kbd>F</kbd>: Toggle Fullscreen</li>
+                <li><kbd>P</kbd>: Play/Pause Autoplay</li>
+                <li><kbd>Esc</kbd>: Close this window / Exit Fullscreen</li>
+            </ul>
+            <button class="btn btn-primary" id="btnCloseHelp">Close</button>
+        </div>
+    </div>
+
+    <!-- Logic script -->
+    <script src="script.js"></script>
+</body>
+</html>
